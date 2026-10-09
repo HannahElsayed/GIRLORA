@@ -14,32 +14,34 @@
 </head>
 <body>
   
-  <header class="nav-header between-flex gap-20 p-30">
-    <a href="#" class="logo d-flex align-center gap-20">
-      <h1 class="logo-f m-0">GIRLORA <span class="star">✨</span><span class="line"></span></h1>
-      <span class="logo-side center-flex">Universe</span>
-    </a>
+ <header class="nav-header between-flex gap-20 p-30">
+  <a href="#" class="logo d-flex align-center gap-20">
+    <h1 class="logo-f m-0">GIRLORA <span class="star">✨</span><span class="line"></span></h1>
+    <span class="logo-side center-flex">Universe</span>
+  </a>
 
-    <nav class="nav-list" aria-label="Main">
-      <ul class="d-flex align-center gap-20 m-0">
-        <li><a href="#">BEAUTY</a></li>
-        <li><a href="#">JOURNAL</a></li>
-        <li><a href="#">DISCOVER</a></li>
-        <li><a href="#">CHARACTERS</a></li>
-        <li><a href="#">MOOD</a></li>
-        <li><a href="#">MINDSET</a></li>
-      </ul>
-    </nav>
+  <nav class="nav-list" aria-label="Main">
+    <ul class="d-flex align-center gap-20 m-0">
+      <li><a href="#">BEAUTY</a></li>
+      <li><a href="#">JOURNAL</a></li>
+      <li><a href="#">DISCOVER</a></li>
+      <li><a href="#">CHARACTERS</a></li>
+      <li><a href="#">MOOD</a></li>
+      <li><a href="#">MINDSET</a></li>
+    </ul>
+  </nav>
 
-    <div class="right-nav d-flex align-center gap-20">
-      <input type="text" class="search-bar" placeholder="Search...">
-      <i class="fa-regular fa-heart heart-btn c-pink"></i>
-      <p class="main-character d-flex align-center m-0 fw-bold fs-14">
-        <span class="circle"></span>Main Character mode ON
-      </p>
-      <!-- <button class="explore-btn b-none rad-10">Explore GIRLZ universe</button> -->
-    </div>
-  </header>
+  <div class="right-nav d-flex align-center gap-20">
+    <input type="text" class="search-bar" placeholder="Search...">
+    <i class="fa-regular fa-heart heart-btn c-pink"></i>
+    <p class="main-character d-flex align-center m-0 fw-bold fs-14">
+      <span class="circle"></span>Main Character mode ON
+    </p>
+    <button class="menu-toggle" type="button" aria-label="Toggle menu" aria-expanded="false">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </div>
+</header>
  <section class="over-f-hidden p-relative">
   <div class="hero pt-20 pb-50 pl-50 pr-40">
     <div class="text-wrapper">
@@ -130,7 +132,7 @@
           </button>
         </div>
 
-        <a href="#" class="quiz-cta">
+        <a href="#"  id="quiz-cta" class="quiz-cta">
           <span>Take the 2-Min Quiz</span>
           <i class="fa-solid fa-arrow-up-right"></i>
         </a>
@@ -403,9 +405,9 @@
       <div class="between-flex mb-30">
         <div>
           <p class="eyebrow">Evening Reflection</p>
-          <h2 class="section-title fs-32">Good evening, Muse ✨</h2>
+          <h2 class="section-title fs-32" id="greeting">Good evening, Muse ✨</h2>
         </div>
-        <span class="fs-13 c-p">October 24, 2025</span>
+       <span class="fs-13 c-p" id="today-date">October 24, 2025</span>
       </div>
 
       <p class="eyebrow">Check in with your spirit 🌸</p>
@@ -418,12 +420,12 @@
       </div>
 
       <p class="font-heading fs-20 c-pink-dark">Prompt of the Day: “3 things to romanticize about your everyday life today”</p>
-      <textarea class="text-input" rows="5"
+      <textarea id="journal" class="text-input" rows="5"
         placeholder="1. The morning sunlight slicing across the travertine kitchen counter..."></textarea>
 
       <div class="between-flex mt-20 f-wrap gap-20">
         <p class="fs-12 c-p m-0"><i class="fa-solid fa-lock"></i> Private and encrypted within your local journal vault</p>
-        <a href="#" class="button button-dark">Save Entry <i class="fa-solid fa-wand-magic-sparkles"></i></a>
+        <a href="#" id="save-entry" class="button button-dark">Save Entry <i class="fa-solid fa-wand-magic-sparkles"></i></a>
       </div>
     </div>
   </div>
