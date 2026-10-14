@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GIRLORA Profile</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Libre+Caslon+Condensed:wght@400..700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="framework.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="page.css">
+  <link rel="stylesheet" href="world.css">
+</head>
+<body data-page="characters">
+  <div id="site-header"></div>
+  <main class="container" id="profile-root"></main>
+  <div id="site-footer"></div>
+  <script src="characters.js"></script>
+  <script src="layout.js"></script>
+  <script>
+    (function () {
+      var G = window.GIRLORA, params = new URLSearchParams(window.location.search);
+      var slug = params.get("c") || G.load();
+      var c = G.find(slug);
+      var root = document.getElementById("profile-root");
+      if (!c) {
+        root.innerHTML = '<section class="page-hero"><h1 class="page-title">No profile yet</h1>' +
+          '<p class="page-sub">Take the quiz to find your character, or browse them all.</p>' +
+          '<p style="margin-top:24px"><a class="quiz-cta" href="quiz.html">Take the Quiz ✨</a></p></section>';
+        return;
+      }
+      document.title = c.name + " · GIRLORA";
+      var isResult = params.get("result") === "1";
+      var sw = function (cls) { return '<div class="' + cls + '">' + c.palette.map(function (p) { return '<span style="background:' + p + '" title="' + p + '"></span>'; }).join("") + '</div>'; };
+      var others = G.characters.filter(function (o) { return o.slug !== c.slug; }).map(function (o) {
+        return '<a class="other-chip" href="profile.html?c=' + o.slug + '"><span class="oc-emoji">' + o.emoji + '</span><span class="oc-name">' + o.name + '</span></a>';
+      }).join("");
+      root.innerHTML =
+        (isResult ? '<div class="result-banner fade-in">✨ Your result is in!</div>' : '') +
+        '<section class="profile-hero fade-in">' +
+          '<div class="profile-image"><img src="' + c.image + '" alt="' + c.name + '" onerror="this.style.display=\'none\'"></div>' +
+          '<div>' +
+            '<p class="eyebrow">' + (isResult ? "You are" : "Archetype " + c.num) + '</p>' +
+            '<h1 class="profile-name">' + c.name + ' ' + c.emoji + '</h1>' +
+            '<p class="profile-tagline">' + c.tagline + '</p>' +
+            '<p class="profile-about">' + c.about + '</p>' +
+            '<div class="trait-row">' + c.traits.map(function (t) { return '<span class="trait">' + t + '</span>'; }).join("") + '</div>' +
+            '<div class="profile-actions">' +
+              '<a class="button button-primary" href="quiz.html">Retake the Quiz</a>' +
+              '<button class="button button-outline" type="button" id="share-btn">Share my result</button>' +
+              '<a class="button button-outline" href="characters.html">All characters</a>' +
+            '</div>' +
+          '</div>' +
+        '</section>' +
+        '<section class="profile-panels">' +
+          '<div class="panel"><span class="eyebrow">Wardrobe</span><h3>What you wear</h3><p>' + c.wardrobe + '</p></div>' +
+          '<div class="panel"><span class="eyebrow">Beauty</span><h3>How you glow</h3><p>' + c.beauty + '</p></div>' +
+          '<div class="panel"><span class="eyebrow">Mindset</span><h3>How you think</h3><p>' + c.mindset + '</p></div>' +
+        '</section>' +
+        '<section class="profile-split">' +
+          '<div class="panel"><span class="eyebrow">Palette · Scent · Ritual</span>' + sw("big-palette") +
+            '<p><strong>Scent:</strong> ' + c.scent + '</p><p style="margin-top:8px"><strong>Ritual:</strong> ' + c.ritual + '</p></div>' +
+          '<div class="panel"><span class="eyebrow">Daily rhythm</span>' +
+            c.rhythm.map(function (r) { return '<div class="rhythm-item"><span class="rhythm-when">' + r[0] + '</span><span class="rhythm-what">' + r[1] + '</span></div>'; }).join("") +
+          '</div>' +
+        '</section>' +
+        '<section class="mantra"><p>“' + c.mantra + '”</p></section>' +
+        '<section class="section-header"><h2 class="section-title">Meet the others</h2></section>' +
+        '<div class="other-grid" style="margin-bottom:60px">' + others + '</div>';
+
+      document.getElementById("share-btn").addEventListener("click", function () {
+        var btn = this, url = window.location.href.split("?")[0] + "?c=" + c.slug;
+        var text = "I'm " + c.name + " " + c.emoji + " on GIRLORA!";
+        function done(msg) { btn.textContent = msg; setTimeout(function () { btn.textContent = "Share my result"; }, 2000); }
+        if (navigator.share) { navigator.share({ title: c.name, text: text, url: url }).catch(function () {}); return; }
+        if (navigator.clipboard) { navigator.clipboard.writeText(text + " " + url).then(function () { done("Copied ✓"); }, function () { done("Copy failed"); }); }
+        else done("Copy the link from the address bar");
+      });
+    })();
+  </script>
+</body>
+</html>

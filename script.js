@@ -1,9 +1,3 @@
-const heartBtn = document.querySelector('.heart-btn');
-const heartIcon = document.querySelector('i.fa-heart');
-heartBtn.addEventListener ('click',()=>{
-    heartIcon.classList.toggle('fa-solid');
-})
-
 document.addEventListener("DOMContentLoaded", () => {
   /* ---------- helpers ---------- */
   const store = {
@@ -43,16 +37,8 @@ document.addEventListener("DOMContentLoaded", () => {
   if (store.get("liked", false)) { heart.classList.add("fa-solid"); heart.classList.remove("fa-regular"); }
 
   /* ---------- quiz: archetypes update the preview card ---------- */
-  const archetypes = [
-    { title: "The Soft Power Girl 🌸", palette: ["#a0174f", "#f48fb1", "#ec4899", "#fde4ee", "#fff0f6"],
-      scent: "Rose Petals & Tonka", ritual: "15m Solitude & Matcha" },
-    { title: "The Clean Minimalist 🤍", palette: ["#3d3a38", "#bfb8b0", "#e8e2da", "#f7f4ef", "#ffffff"],
-      scent: "White Tea & Cedar", ritual: "10m Stretch & Lemon Water" },
-    { title: "The Literary Muse 📖", palette: ["#5a1d39", "#a8577e", "#c9a27e", "#f1e3d3", "#fff7ee"],
-      scent: "Old Paper & Amber", ritual: "20m Reading & Chai" },
-    { title: "The Quiet Luxury Girl 🕊️", palette: ["#2b2523", "#7a6a5f", "#b9a999", "#e9e1d8", "#faf7f2"],
-      scent: "Sandalwood & Fig", ritual: "Evening Journaling & Jasmine Tea" },
-  ];
+  // data comes from characters.js (shared with the quiz + profile pages)
+  const archetypes = window.GIRLORA.characters.map((c) => ({ title: c.name + " " + c.emoji, palette: c.palette, scent: c.scent, ritual: c.ritual, slug: c.slug }));
 
   const archetypeButtons = document.querySelectorAll(".archetype");
   const resultTitle = document.querySelector(".result-title");
@@ -63,6 +49,8 @@ document.addEventListener("DOMContentLoaded", () => {
   function showArchetype(index) {
     const data = archetypes[index];
     archetypeButtons.forEach((b, i) => b.classList.toggle("active", i === index));
+    const profileLink = document.getElementById("profile-link");
+    if (profileLink) profileLink.href = "profile.html?c=" + data.slug;
     resultCard.style.opacity = "0";
     setTimeout(() => {
       resultTitle.textContent = data.title;
@@ -74,12 +62,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   resultCard.style.transition = "opacity 0.2s";
   archetypeButtons.forEach((btn, i) => btn.addEventListener("click", () => showArchetype(i)));
-
-  // placeholder until the real quiz exists: pick a random archetype
-  document.getElementById("quiz-cta").addEventListener("click", (e) => {
-    e.preventDefault();
-    showArchetype(Math.floor(Math.random() * archetypes.length));
-  });
 
   /* ---------- 7-day reset (saved in the browser) ---------- */
   const days = document.querySelectorAll(".day-card:not(.next-level)");

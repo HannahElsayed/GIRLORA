@@ -419,7 +419,7 @@ a {
 
 .archetypes {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 15px;
   margin-bottom: 36px;
 }
@@ -503,7 +503,7 @@ a {
   font-weight: 600;
   letter-spacing: .12em; 
   text-transform: uppercase;
-  color: var(--n-pink-);
+  color: var(--neon-pink);
    margin-bottom: 14px;
 }
 .palette {
@@ -664,7 +664,6 @@ a {
 
 /* ////////////////////////// */
 /* ===== Global safety ===== */
-html, body { overflow-x: hidden; }
 img { max-width: 100%; }
 
 /* ===== Hamburger button ===== */
@@ -813,3 +812,11 @@ img { max-width: 100%; }
 @media (hover: none) {
   .hover-lift:hover { transform: none; }
 }
+/* ===== Desktop nav spacing ===== */
+@media (min-width: 1101px) {
+  .nav-list ul { gap: 32px; }
+  .right-nav { margin-left: 24px; }
+}
+/* ===== Home: 6 archetypes ===== */
+.archetype { text-decoration: none; }
+@media (max-width: 900px) { .archetypes { grid-template-columns: repeat(2, 1fr); } }

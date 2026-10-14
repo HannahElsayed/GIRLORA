@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GIRLORA Quiz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Libre+Caslon+Condensed:wght@400..700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="framework.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="page.css">
+  <link rel="stylesheet" href="world.css">
+</head>
+<body data-page="quiz">
+  <div id="site-header"></div>
+  <main class="world container">
+  <main>
+    <section class="page-hero">
+      <p class="eyebrow">✨ The Era Quiz</p>
+      <h1 class="page-title">Which GIRLORA are you?</h1>
+      <p class="page-sub">Eight quick questions. Go with your gut, there are no wrong answers.</p>
+    </section>
+    <div class="quiz-shell">
+      <div class="progress-track"><div class="progress-bar" id="progress-bar"></div></div>
+      <p class="progress-label" id="progress-label">Question 1 of 8</p>
+      <h2 class="question-text" id="question-text"></h2>
+      <div class="options" id="options"></div>
+      <div class="quiz-nav">
+        <button type="button" class="back-btn" id="back-btn" disabled>← Back</button>
+        <a href="characters.html" class="link-arrow fs-13">See all characters</a>
+      </div>
+    </div>
+  </main>
+  <div id="site-footer"></div>
+  <script src="characters.js"></script>
+  <script src="./css/layout.js"></script>
+  <script>
+    (function () {
+      var G = window.GIRLORA, Q = G.questions, answers = [], i = 0;
+      var qText = document.getElementById("question-text");
+      var opts = document.getElementById("options");
+      var bar = document.getElementById("progress-bar");
+      var label = document.getElementById("progress-label");
+      var back = document.getElementById("back-btn");
+
+      function render() {
+        qText.textContent = Q[i].q;
+        label.textContent = "Question " + (i + 1) + " of " + Q.length;
+        bar.style.width = (i / Q.length * 100) + "%";
+        back.disabled = i === 0;
+        opts.innerHTML = "";
+        Q[i].options.forEach(function (o, idx) {
+          var b = document.createElement("button");
+          b.type = "button";
+          b.className = "option fade-in" + (answers[i] === idx ? " selected" : "");
+          b.textContent = o.t;
+          b.addEventListener("click", function () { choose(idx); });
+          opts.appendChild(b);
+        });
+      }
+      function choose(idx) {
+        answers[i] = idx;
+        if (i < Q.length - 1) { i++; render(); return; }
+        bar.style.width = "100%";
+        var r = G.score(answers);
+        G.save(r.slug);
+        window.location.href = "profile.html?c=" + r.slug + "&result=1";
+      }
+      back.addEventListener("click", function () { if (i > 0) { i--; render(); } });
+      render();
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GIRLORA Characters</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Libre+Caslon+Condensed:wght@400..700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="framework.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="page.css">
+  <link rel="stylesheet" href="world.css">
+</head>
+<body data-page="characters">
+  <div id="site-header"></div>
+  <main>
+    <section class="page-hero">
+      <p class="eyebrow">✨ The Universe</p>
+      <h1 class="page-title">Meet the 6 Characters</h1>
+      <p class="page-sub">Six ways to be a GIRLORA. Browse them all, or take the quiz to find your own.</p>
+      <p class="mt-20" style="margin-top:20px"><a href="quiz.html" class="quiz-cta">Take the 2-Min Quiz ✨</a></p>
+    </section>
+    <section class="section">
+      <div class="container"><div class="characters-grid" id="characters-grid"></div></div>
+    </section>
+  </main>
+  <div id="site-footer"></div>
+  <script src="characters.js"></script>
+  <script src="layout.js"></script>
+  <script>
+    (function () {
+      var G = window.GIRLORA, grid = document.getElementById("characters-grid"), mine = G.load();
+      G.characters.forEach(function (c) {
+        var a = document.createElement("a");
+        a.className = "character-card";
+        a.href = "profile.html?c=" + c.slug;
+        a.innerHTML =
+          '<div class="cc-image"><img src="' + c.image + '" alt="' + c.name + '" onerror="this.style.display=\'none\'"></div>' +
+          '<div class="cc-body">' +
+            '<span class="cc-num">Archetype ' + c.num + (mine === c.slug ? " · Your result" : "") + '</span>' +
+            '<h2 class="cc-name">' + c.name + ' ' + c.emoji + '</h2>' +
+            '<p class="cc-tag">' + c.tagline + '</p>' +
+            '<div class="mini-palette">' + c.palette.map(function (p) { return '<span style="background:' + p + '"></span>'; }).join("") + '</div>' +
+            '<span class="cc-more">View profile →</span>' +
+          '</div>';
+        grid.appendChild(a);
+      });
+    })();
+  </script>
+</body>
+</html>

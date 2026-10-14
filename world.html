@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GIRLORA World</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Libre+Caslon+Condensed:wght@400..700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="framework.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="page.css">
+  <link rel="stylesheet" href="world.css">
+</head>
+<body data-page="world">
+  <div id="site-header"></div>
+  <main class="world container">
+
+    <!-- HERO -->
+    <section class="glass w-hero">
+      <div class="w-hero-text">
+        <span class="pill">✨ Portal open · Season 01</span>
+        <h1 class="w-title">Welcome to <span id="hero-brand">GIRLORA</span> World</h1>
+        <p class="w-sub">Choose your heroine. Curate your cozy sanctuary, complete sweet daily quests, and write your heart's diary in a soft pink world.</p>
+        <blockquote class="w-quote" id="hero-quote"></blockquote>
+        <div class="w-actions">
+          <a class="button button-primary" href="#heroines">Start your journey →</a>
+          <a class="button button-outline" href="quiz.html">Not sure? Take the quiz</a>
+        </div>
+        <div class="w-stats"><span>6 Heroines</span><span>12 Aesthetic outfits</span><span>5 Mini-games</span></div>
+      </div>
+      <div class="w-hero-card">
+        <div class="hero-photo"><img id="hero-img" alt="" onerror="this.style.display='none'"><span class="hero-emoji" id="hero-emoji"></span></div>
+        <div class="hero-card-info">
+          <b id="hero-name"></b><small id="hero-tag"></small>
+          <a class="button button-dark" id="hero-profile" href="#">View profile</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- HEROINES -->
+    <section class="glass w-section" id="heroines">
+      <p class="eyebrow">Heroine roster</p>
+      <h2 class="w-h2">Who are you today? ✨</h2>
+      <p class="w-desc">Switch between 6 archetypes. Each one changes your room, your wardrobe and your daily quests.</p>
+      <div class="hero-grid" id="hero-grid"></div>
+    </section>
+
+    <!-- ROOM -->
+    <section class="glass w-section" id="room">
+      <p class="eyebrow">Sanctuary living space</p>
+      <h2 class="w-h2"><span id="room-name">Your</span> Cozy Room 🪴</h2>
+      <p class="w-desc">Tap the glowing hotspots to do a tiny habit and earn XP.</p>
+      <div class="room-scene" id="room-scene">
+        <button class="hotspot" style="left:12%;top:58%" data-emoji="🌱" data-title="Water the plants" data-xp="10">🌱</button>
+        <button class="hotspot" style="left:34%;top:36%" data-emoji="📖" data-title="Read 10 pages" data-xp="15">📖</button>
+        <button class="hotspot" style="left:55%;top:62%" data-emoji="🛏️" data-title="Make the bed" data-xp="10">🛏️</button>
+        <button class="hotspot" style="left:74%;top:34%" data-emoji="🕯️" data-title="Light a candle & breathe" data-xp="10">🕯️</button>
+        <button class="hotspot" style="left:88%;top:64%" data-emoji="🍵" data-title="Make a warm drink" data-xp="10">🍵</button>
+        <div class="room-tip" id="room-tip">Tap a hotspot ✨</div>
+      </div>
+      <div class="chip-row">
+        <span class="chip">🎧 Focus playlist</span><span class="chip">💌 Affirmation</span><span class="chip">🔥 Habit streak</span><span class="chip">📚 Reading list</span>
+      </div>
+    </section>
+
+    <!-- DRESS UP -->
+    <section class="glass w-section" id="studio">
+      <p class="eyebrow">Atelier boutique</p>
+      <h2 class="w-h2">Interactive Dress-Up Studio 👗</h2>
+      <p class="w-desc">Tap items to equip them. Pick a colour to change the mood.</p>
+      <div class="studio">
+        <div class="studio-preview" id="studio-preview">
+          <img id="studio-img" alt="" onerror="this.style.display='none'"><span class="hero-emoji" id="studio-emoji"></span>
+          <div class="equipped" id="equipped"></div>
+        </div>
+        <div class="studio-panel">
+          <div class="tabs" id="studio-tabs"></div>
+          <div class="item-grid" id="item-grid"></div>
+          <div class="swatches" id="swatches"></div>
+          <button class="button button-outline" type="button" id="random-look">🎲 Random look</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- MOOD -->
+    <section class="glass w-section" id="mood">
+      <p class="eyebrow">Emotional check-in</p>
+      <h2 class="w-h2">How are you feeling today? 🌸</h2>
+      <div class="mood-row" id="mood-row"></div>
+      <div class="prescription" id="prescription">Pick a mood to get your little prescription 💗</div>
+    </section>
+
+    <!-- ARCADE -->
+    <section class="glass w-section" id="arcade">
+      <p class="eyebrow">Mini-games hub</p>
+      <h2 class="w-h2">GIRLORA Arcade 🎮</h2>
+      <div class="arcade-grid">
+        <div class="game-card"><div class="game-emoji">💗</div><h3>Catch the Hearts</h3><p>Tap hearts for 10 seconds.</p><button class="button button-dark" id="play-hearts" type="button">Play · +XP</button></div>
+        <div class="game-card"><div class="game-emoji">🧠</div><h3>Memory Match</h3><p>Match the 6 pairs.</p><button class="button button-dark" id="play-memory" type="button">Play · +XP</button></div>
+        <div class="game-card"><div class="game-emoji">🎡</div><h3>Daily Spin</h3><p>One free spin a day.</p><button class="button button-dark" id="play-spin" type="button">Spin</button></div>
+      </div>
+      <div class="game-area" id="game-area" hidden></div>
+    </section>
+
+    <!-- LEVEL -->
+    <section class="glass w-section" id="level">
+      <div class="level-grid">
+        <div>
+          <p class="eyebrow">Progression status</p>
+          <h2 class="w-h2">Level <span id="lvl">01</span> · <span id="lvl-title">Main Character Era</span> ✨</h2>
+          <p class="w-desc">Every habit, game and journal entry earns XP.</p>
+          <div class="chip-row" id="badges"></div>
+        </div>
+        <div class="stat-bars" id="stat-bars"></div>
+      </div>
+    </section>
+
+    <!-- MAP -->
+    <section class="glass w-section" id="map">
+      <p class="eyebrow">Interactive realm</p>
+      <h2 class="w-h2">The GIRLORA World Map 🗺️</h2>
+      <p class="w-desc">Each heroine has a home. Tap a place to visit.</p>
+      <div class="map-grid" id="map-grid"></div>
+      <div class="prescription" id="map-info">Choose a place on the map 🌍</div>
+    </section>
+
+    <!-- JOURNAL -->
+    <section class="glass w-section" id="journal">
+      <div class="journal-grid">
+        <div>
+          <p class="eyebrow">Cozy journal room</p>
+          <h2 class="w-h2">Dear Future Me… 💌</h2>
+          <p class="w-desc">Write a letter to yourself. It stays in your browser, private to you.</p>
+          <p class="w-prompt" id="journal-prompt"></p>
+        </div>
+        <div class="journal-card">
+          <textarea id="journal-text" rows="6" placeholder="Dear Future Me,"></textarea>
+          <div class="journal-actions"><span class="fs-12" id="journal-count">0 entries</span><button class="button button-primary" id="journal-save" type="button">Seal with a kiss 💋</button></div>
+          <ul class="entries" id="entries"></ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <div id="site-footer"></div>
+  <script src="characters.js"></script>
+  <script src="layout.js"></script>
+  <script src="world.js"></script>
+</body>
+</html>

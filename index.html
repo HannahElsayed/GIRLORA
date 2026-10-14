@@ -6,11 +6,11 @@
   <title>GIRLORA Universe</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Libre+Caslon+Condensed:wght@400..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Libre+Caslon+Condensed:wght@400..700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="stylesheet" href="framework.css">
   <link rel="stylesheet" href="style.css">
-
+  <link rel="stylesheet" href="world.css">
 </head>
 <body>
   
@@ -25,8 +25,9 @@
       <li><a href="#">BEAUTY</a></li>
       <li><a href="#">JOURNAL</a></li>
       <li><a href="#">DISCOVER</a></li>
-      <li><a href="#">CHARACTERS</a></li>
-      <li><a href="#">MOOD</a></li>
+      <li><a href=".html/characters.html">CHARACTERS</a></li>
+      <li><a href=".html/quiz.html">QUIZ</a></li>
+      <li><a href=".html/world.html">WORLD</a></li>
       <li><a href="#">MINDSET</a></li>
     </ul>
   </nav>
@@ -59,7 +60,7 @@
       </p>
       <div class="d-flex align-center gap-20 pt-20">
         <a href="#" class="primary-btn">Explore GIRLORA <i class="fa-solid fa-arrow-right"></i></a>
-        <a href="#" class="sec-btn">Discover Your Vibe ✨</a>
+        <a href=".html/quiz.html" class="sec-btn">Discover Your Vibe ✨</a>
       </div>
       <div class="top-line"></div>
       <div class="grid grid-c3 pt-20">
@@ -130,11 +131,19 @@
             <span class="archetype-label">Archetype IV</span>
             <span class="archetype-name">The Quiet Luxury</span>
           </button>
+          <button class="archetype" type="button">
+            <span class="archetype-label">Archetype V</span>
+            <span class="archetype-name">The Coquette Romantic</span>
+          </button>
+          <button class="archetype" type="button">
+            <span class="archetype-label">Archetype VI</span>
+            <span class="archetype-name">The Street Sophisticate</span>
+          </button>
         </div>
 
-        <a href="#"  id="quiz-cta" class="quiz-cta">
+        <a href="quiz.html" id="quiz-cta" class="quiz-cta">
           <span>Take the 2-Min Quiz</span>
-          <i class="fa-solid fa-arrow-up-right"></i>
+          <i class="fa-solid fa-arrow-right"></i>
         </a>
       </div>
 
@@ -166,6 +175,8 @@
               <p class="info-value">15m Solitude &amp; Matcha</p>
             </div>
           </div>
+
+          <a id="profile-link" href="profile.html?c=soft-power" class="link-arrow fs-13" style="display:inline-block;margin-top:18px">View full profile →</a>
         </div>
       </div>
 
@@ -442,7 +453,7 @@
     </p>
     <div class="center-flex gap-20 f-wrap mt-30">
       <a href="#" class="button button-dark">Join GIRLORA Atelier <i class="fa-solid fa-arrow-right"></i></a>
-      <a href="#" class="button button-outline">Take Era Diagnostic ✨</a>
+      <a href="quiz.html" class="button button-outline">Take Era Diagnostic ✨</a>
     </div>
   </div>
 
@@ -478,7 +489,7 @@
       <p class="fs-12 c-p m-0">© 2025 GIRLORA Atelier. All rights reserved. Curated for the modern muse.</p>
     </div>
     <ul class="footer-links">
-      <li><a href="#">Editorial Archive</a></li>
+      <li><a href="world.html">GIRLORA World</a></li><li><a href="characters.html">Characters</a></li>
       <li><a href="#">Self-Care Guides</a></li>
       <li><a href="#">Privacy Policy</a></li>
       <li><a href="#">Terms of Service</a></li>
@@ -489,7 +500,8 @@
 </footer>
 
 
-  <script src="script.js"></script>
+  <script src=".script/characters.js"></script>
+  <script src=".script/script.js"></script>
 
 </body>
 </html>
